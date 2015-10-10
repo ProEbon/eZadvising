@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
+
     <title> eZAdvising </title>
     <script src="app/view/js/lib/jquery.min.js"></script>
     <script src="app/view/js/lib/jquery-ui.min.js"></script>
@@ -15,11 +18,15 @@
 </head>
 
 <body>
+
 <div id="top" class="top">
     <h3> eZAdvising </h3>
-
 </div>
 
+<!-- hard coded login thingy to show who is logged in-->
+<div id ="login_Info" class = "login_Info">
+    <h6> Advisor </h6>
+</div>
 <ul class="nav nav-pills">
     <li class="planpill active"><a data-toggle="pill" href="#plan0">Home</a></li>
     <li class="planpill"><a data-toggle="pill" href="#plan1">New Plan</a></li>
