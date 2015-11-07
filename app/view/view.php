@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title> eZAdvising </title>
-
+<header>
+    <!-- General Imports-->
     <script src="app/view/js/lib/jquery.min.js"></script>
     <script src="app/view/js/lib/jquery-ui.min.js"></script>
     <script src="app/view/js/lib/bootstrap.min.js"></script>
     <script src="app/view/js/lib/jquery-simulate.js"></script>
 
-    <link rel="stylesheet" href="app/view/css/lib/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="app/view/css/lib/jquery-ui.css"> -->
     <link rel="stylesheet" href="app/view/css/lib/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="app/view/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="app/view/css/popup.css">
-</head>
+    <!-- End General Imports -->
 
-<body>
-<div id="top" class="top">
-    <h3> eZAdvising </h3>
+    <!-- Custom Styling -->
+    <link rel="stylesheet" href="app/view/css/navigation.css">
+    <link rel="stylesheet" href="app/view/css/popup.css">
+    <link rel="stylesheet" href="app/view/css/styles.css">
+    <!-- End Custom Styling -->
 
-</div>
+    <div id="top" class="top">
+        <h3> eZAdvising </h3>
+    </div>
+
+
+</header>
+
+<!-- Nav Bar Tabs -->
+<nav>
+    <div id="pills">
+        <ul class="nav nav-pills">
+            <li class="planpill active" id="pill0"><a href="#plan0" data-toggle="pill" id="hover0"></a></li>
+        </ul>
+    </div>
+</nav>
+<!-- End Nav Bar Tabs -->
 
 <!-- Bootstrap Form -->
 <div id="modal" class="modal fade" role="dialog" data-keyboard="false">
@@ -33,12 +47,12 @@
                     <form role="form" action="" method="POST" id="form" class="changeTitle"
                           onkeydown="keyStroke(event)">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="title" value=" " autofocus>
+                            <input type="text" class="form-control" id="title" value=" ">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Close</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="addPill">Submit
                     </button>
                 </div>
@@ -46,22 +60,14 @@
         </div>
     </div>
 </div>
-<!-- End of Bootstrap Form -->
+<!-- End Bootstrap Form -->
 
-<!-- Nav Bar Tabs -->
-<div id="pills">
-    <ul class="nav nav-pills">
-        <li class="planpill active" id="pill0" href="plan0"><a href="#plan0" data-toggle="pill">Default</a></li>
-        <li class="planpill" id="pill1" onclick="ShowBox()"><a href="#plan1" data-toggle="pill"><span class="glyphicon glyphicon-plus"></span></a></li>
-    </ul>
-</div>
-<!-- End of Nav Bar Tabs -->
-
+<body>
+<!-- Div Wrapper -->
 <div class="tab-content">
-
-    <div id="plan0" class="tab-pane fade in active">
-
+    <div id="plan0" class="tab-pane in active">
         <div id="wrapper">
+            <!-- Div Left -->
             <div id="left">
                 <table>
                     <tr>
@@ -70,26 +76,23 @@
                 </table>
                 <div id="currentState0"></div>
             </div>
+            <!-- End Div Left -->
 
-            <!-- newlayout <div id="col23"> -->
-
+            <!-- Div Main -->
             <div id="main">
                 <tr>
                     <td>
                         <h4>
-                            <button data-toggle="modal" data-target="#modal" type="button">Change Plan Name</button>
+                            <button onclick="RenameTab()">Change Plan Name</button>
                             <button data-show="on" onclick="showHideSummers()"> Show/Hide Summers</button>
                         </h4>
                     </td>
                 </tr>
-                <!-- <tr> <td><button onclick="unplan()" > Save Plan </button> </td> </tr>
-                <tr> <td><button onclick="unplan()" > Revert to Saved Plan </button></td></tr>
-                -->
                 <div id="thePlan0"></div>
             </div>
+            <!-- End Div Main -->
 
-            <!-- newlayout </div> --><!-- end div col23 -->
-
+            <!-- Div Right -->
             <div class="target" id="right">
 
                 <table id="required_table">
@@ -106,15 +109,20 @@
 
                 <div id="stillRequiredList0"></div>
             </div>
-            <!-- end div right -->
+            <!-- End Div Right -->
         </div>
     </div>
 </div>
-<!-- end div wrapper -->
-
+<!-- End Div Wrapper -->
 </body>
+
+<!-- Custom Scripts -->
+<script src="app/view/js/AdvisingFunctions.js"></script>
 <script src="app/view/js/ClassBox.js"></script>
-<script src="app/view/js/advising_functions.js"></script>
+<script src="app/view/js/NavBar.js"></script>
+<!-- End Custom Scripts -->
+
 <footer>
 </footer>
 <div id="temp_hidden" class="temp_hidden"></div>
+</html>
