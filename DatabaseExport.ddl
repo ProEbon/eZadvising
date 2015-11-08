@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Oct 08, 2015 at 04:11 AM
--- Server version: 5.5.42
--- PHP Version: 5.5.26
+-- Host: localhost
+-- Generation Time: Nov 08, 2015 at 09:37 PM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ezadvising`
@@ -20,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounts`
 --
 
-CREATE TABLE `accounts` (
+CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -45,43 +51,38 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `type`, `first`, `middle`,
 -- Table structure for table `courses`
 --
 
-CREATE TABLE `courses` (
+CREATE TABLE IF NOT EXISTS `courses` (
   `id` int(11) NOT NULL,
   `dept` varchar(10) NOT NULL,
   `num` varchar(10) NOT NULL,
-  `dif` DOUBLE NOT NULL,   -- difficulty rating (1-10)
-  `dr` FLOAT NOT NULL,     -- drop rate %
-  `fr` FLOAT NOT NULL,     -- fail rate %
+  `dif` double NOT NULL,
+  `dr` float NOT NULL,
+  `fr` float NOT NULL,
   `prereqs` text,
   `defaultCreditHours` int(11) NOT NULL,
   `title` text,
   `description` text,
   `semestersOffered` varchar(30) NOT NULL COMMENT 'bitmask -positions match semester code, Y for offered, N for no, M for maybe'
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
---
---  Difficulty determining algorithm
---
-
-
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `dept`, `num`,`dif`,`dr`, `fr`, `prereqs`, `defaultCreditHours`, `title`, `description`, `semestersOffered`) VALUES
-(1, 'CSCI', '140',0.0 , 0.05, 0.05, '' , 3, 'Introduction to Algorithm Design I', 'description for CSCI 140', 'YYNNNM'),
-(2, 'CSCI', '140L', 0.0, 0.05, 0.05, '' , 1, 'Introduction to Algorithm Design I Lab', 'description for lab', 'YYNNNM'),
-(3, 'CSCI', '150',0.0, 0.10, 0.10, '1 and 2', 3, 'Introduction to Algorithm Design II', 'description for CSCI 150', 'YYNNNM'),
-(4, 'CSCI', '150L',0.0, 0.10, 0.10,  '1 and 2', 1, 'Introduction to Algorithm Design II Lab', 'descriptino for CSCI 150L', 'YYNNNM'),
-(5, 'CSCI', '225',0.0, 0.15, 0.15,  '', 3, 'Introduction to Relational Database and SQL', 'description for CSCI 225', 'YYNNNM'),
-(6, 'CSCI', '203',0.0, 0.11, 0.11,  '6 and 7', 3, 'Introduction to Web Application Development', 'description for CSCI 203', 'YYNNNM'),
-(7, 'ENGL', '211',0.0, 0.05, 0.05,  NULL, 3, 'Technical Writing', 'description for technical writing', 'YYNNNM'),
-(8, 'ENGL', '290',0.0, 0.10, 0.10,  NULL, 3, 'Business Communication', 'description for Engl 290', 'YYNNNM'),
-(9, 'CSCI', '330',0.0, 0.20, 0.20, NULL, 3, 'Software Engineering I', 'description for SE I', 'YYNNNM'),
-(10, 'CSCI', '490',0.0, 0.25, 0.25, '8', 3, 'Software Engineering II', 'SE II description', 'YNNNNN'),
-(11, 'CSCI', '434',0.0, 0.20, 0.20,  NULL, 3, 'Forensics', 'Description of forensics', 'YYNNNM'),
-(12, 'CSCI', '211',0.0, 0.10, 0.10, NULL, 3, 'Computer Infrastructure', 'description of 211', 'NYNNNM'),
-(13, 'CSCI', '350',0.0, 0.25, 0.25, '', 3, 'Programming Languages', 'description of programming languages', 'YNNNNN');
+INSERT INTO `courses` (`id`, `dept`, `num`, `dif`, `dr`, `fr`, `prereqs`, `defaultCreditHours`, `title`, `description`, `semestersOffered`) VALUES
+(1, 'CSCI', '140', 0, 0.05, 0.05, '', 3, 'Introduction to Algorithm Design I', 'description for CSCI 140', 'YYNNNM'),
+(2, 'CSCI', '140L', 0, 0.05, 0.05, '', 1, 'Introduction to Algorithm Design I Lab', 'description for lab', 'YYNNNM'),
+(3, 'CSCI', '150', 0, 0.1, 0.1, '1 and 2', 3, 'Introduction to Algorithm Design II', 'description for CSCI 150', 'YYNNNM'),
+(4, 'CSCI', '150L', 0, 0.1, 0.1, '1 and 2', 1, 'Introduction to Algorithm Design II Lab', 'descriptino for CSCI 150L', 'YYNNNM'),
+(5, 'CSCI', '225', 0, 0.15, 0.15, '', 3, 'Introduction to Relational Database and SQL', 'description for CSCI 225', 'YYNNNM'),
+(6, 'CSCI', '203', 0, 0.11, 0.11, '6 and 7', 3, 'Introduction to Web Application Development', 'description for CSCI 203', 'YYNNNM'),
+(7, 'ENGL', '211', 0, 0.05, 0.05, NULL, 3, 'Technical Writing', 'description for technical writing', 'YYNNNM'),
+(8, 'ENGL', '290', 0, 0.1, 0.1, NULL, 3, 'Business Communication', 'description for Engl 290', 'YYNNNM'),
+(9, 'CSCI', '330', 0, 0.2, 0.2, NULL, 3, 'Software Engineering I', 'description for SE I', 'YYNNNM'),
+(10, 'CSCI', '490', 0, 0.25, 0.25, '8', 3, 'Software Engineering II', 'SE II description', 'YNNNNN'),
+(11, 'CSCI', '434', 0, 0.2, 0.2, NULL, 3, 'Forensics', 'Description of forensics', 'YYNNNM'),
+(12, 'CSCI', '211', 0, 0.1, 0.1, NULL, 3, 'Computer Infrastructure', 'description of 211', 'NYNNNM'),
+(13, 'CSCI', '350', 0, 0.25, 0.25, '', 3, 'Programming Languages', 'description of programming languages', 'YNNNNN');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ INSERT INTO `courses` (`id`, `dept`, `num`,`dif`,`dr`, `fr`, `prereqs`, `default
 -- Table structure for table `course_groups`
 --
 
-CREATE TABLE `course_groups` (
+CREATE TABLE IF NOT EXISTS `course_groups` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL
@@ -120,7 +121,7 @@ INSERT INTO `course_groups` (`id`, `groupId`, `courseId`) VALUES
 -- Table structure for table `course_records`
 --
 
-CREATE TABLE `course_records` (
+CREATE TABLE IF NOT EXISTS `course_records` (
   `id` int(11) NOT NULL,
   `plan` varchar(10) NOT NULL,
   `studentId` int(11) NOT NULL,
@@ -132,7 +133,7 @@ CREATE TABLE `course_records` (
   `proposedReqId` int(11) DEFAULT NULL,
   `hours` int(11) NOT NULL,
   `semesterCode` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course_records`
@@ -144,7 +145,36 @@ INSERT INTO `course_records` (`id`, `plan`, `studentId`, `courseId`, `grade`, `y
 (285, '020164', 1, 10, NULL, 2016, 3, 2, NULL, 3, 4),
 (286, '120166', 1, 4, NULL, 2016, 8, 2, NULL, 1, 6),
 (287, '120162', 1, 7, NULL, 2016, 1, 2, NULL, 3, 2),
-(288, '120162', 1, 9, NULL, 2016, 4, 2, NULL, 3, 2);
+(288, '120162', 1, 9, NULL, 2016, 4, 2, NULL, 3, 2),
+(289, '1', 1, 7, NULL, 2015, 1, 2, NULL, 3, 1),
+(290, '1', 1, 10, NULL, 2015, 3, 2, NULL, 3, 1),
+(291, '1', 1, 12, NULL, 2015, 2, 2, NULL, 3, 1),
+(292, '2', 1, 7, NULL, 2015, 1, 2, NULL, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `DepartmentScores`
+--
+
+CREATE TABLE IF NOT EXISTS `DepartmentScores` (
+  `id` int(11) NOT NULL,
+  `Department` varchar(4) NOT NULL,
+  `Score` double NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `DepartmentScores`
+--
+
+INSERT INTO `DepartmentScores` (`id`, `Department`, `Score`) VALUES
+(1, 'MATH', 2),
+(2, 'CSCI', 2),
+(3, 'MATH', 2),
+(4, 'COMM', 0.5),
+(5, 'ENGL', 1),
+(6, 'MSCI', 1.5),
+(7, 'PHIL', 0.5);
 
 -- --------------------------------------------------------
 
@@ -152,7 +182,7 @@ INSERT INTO `course_records` (`id`, `plan`, `studentId`, `courseId`, `grade`, `y
 -- Table structure for table `groups`
 --
 
-CREATE TABLE `groups` (
+CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `description` text,
@@ -176,10 +206,22 @@ INSERT INTO `groups` (`id`, `name`, `description`, `programId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `plan_title`
+--
+
+CREATE TABLE IF NOT EXISTS `plan_title` (
+  `id` int(11) NOT NULL,
+  `title` varchar(25) NOT NULL,
+  `plan` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `prereqs`
 --
 
-CREATE TABLE `prereqs` (
+CREATE TABLE IF NOT EXISTS `prereqs` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `courseId` int(11) NOT NULL,
@@ -202,7 +244,7 @@ INSERT INTO `prereqs` (`id`, `type`, `courseId`, `expression`) VALUES
 -- Table structure for table `prereq_detail`
 --
 
-CREATE TABLE `prereq_detail` (
+CREATE TABLE IF NOT EXISTS `prereq_detail` (
   `id` int(11) NOT NULL,
   `prereqId` int(11) DEFAULT NULL,
   `type` int(11) NOT NULL,
@@ -231,7 +273,7 @@ INSERT INTO `prereq_detail` (`id`, `prereqId`, `type`, `courseId`, `minGrade`, `
 -- Table structure for table `programs`
 --
 
-CREATE TABLE `programs` (
+CREATE TABLE IF NOT EXISTS `programs` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL COMMENT 'major, minor, etc',
   `title` text NOT NULL
@@ -250,7 +292,7 @@ INSERT INTO `programs` (`id`, `type`, `title`) VALUES
 -- Table structure for table `program_requirements`
 --
 
-CREATE TABLE `program_requirements` (
+CREATE TABLE IF NOT EXISTS `program_requirements` (
   `id` int(11) NOT NULL,
   `title` varchar(500) NOT NULL,
   `category` int(11) NOT NULL COMMENT '1-core, 2-foundation, 3- major',
@@ -281,7 +323,7 @@ INSERT INTO `program_requirements` (`id`, `title`, `category`, `programId`, `gro
 -- Table structure for table `semester_codes`
 --
 
-CREATE TABLE `semester_codes` (
+CREATE TABLE IF NOT EXISTS `semester_codes` (
   `id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `level` int(11) NOT NULL COMMENT '1-fall,spring, 2-summer, 3-fall I,II, etc, 4-other',
@@ -304,30 +346,10 @@ INSERT INTO `semester_codes` (`id`, `name`, `level`, `duration`, `order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plan_title`
---
-
-CREATE TABLE `plan_title` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) NOT NULL,
-  `plan` int NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `semester_codes`
---
-
--- INSERT INTO `plan_title`(`title`, `plan`) VALUES
--- ('Default', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `students`
 --
 
-CREATE TABLE `students` (
+CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL,
   `accountId` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -346,7 +368,7 @@ INSERT INTO `students` (`id`, `accountId`) VALUES
 -- Table structure for table `student_programs`
 --
 
-CREATE TABLE `student_programs` (
+CREATE TABLE IF NOT EXISTS `student_programs` (
   `id` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `programId` int(11) NOT NULL,
@@ -389,9 +411,23 @@ ALTER TABLE `course_records`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `DepartmentScores`
+--
+ALTER TABLE `DepartmentScores`
+  ADD UNIQUE KEY `id_3` (`id`,`Department`,`Score`),
+  ADD KEY `id` (`id`),
+  ADD KEY `id_2` (`id`);
+
+--
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `plan_title`
+--
+ALTER TABLE `plan_title`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -459,12 +495,22 @@ ALTER TABLE `course_groups`
 -- AUTO_INCREMENT for table `course_records`
 --
 ALTER TABLE `course_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=289;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=293;
+--
+-- AUTO_INCREMENT for table `DepartmentScores`
+--
+ALTER TABLE `DepartmentScores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `plan_title`
+--
+ALTER TABLE `plan_title`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `prereqs`
 --
@@ -500,3 +546,6 @@ ALTER TABLE `students`
 --
 ALTER TABLE `student_programs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -350,7 +350,24 @@ class PlanItemModel {
 
     private function difficultyGeneration($courseId, $hours)
     {
+        $id = $courseId;
 
+        $dept = 'SELECT dept FROM "courses" WHERE id = 1';
+        $dr = 'SELECT dr FROM "courses" WHERE id =1';
+        $fr = 'SELECT fr FROM "courses" WHERE id =1';
+        $courseLevel= 'SELECT num FROM "courses" WHERE id =1';
+        $dif = 'SELECT dif FROM "courses" WHERE id = 1';
+
+
+
+        $stmt = $this->conn->prepare($dept, $dr, $fr, $courseLevel, $dif );
+
+
+
+
+        $stmt->execute();
+
+        $stmt->fetch();
 
     }
 }
