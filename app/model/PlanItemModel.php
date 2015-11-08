@@ -13,6 +13,8 @@ class PlanItemModel {
     public function movePlanItem($token, $studentId, $groupId, $semester,
                                  $year, $toSemester, $toYear, $plan)
     {
+
+        // comment test
         try {
             // if (!validateToken($token, $studentId)) {
             //     return 403;
