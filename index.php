@@ -17,6 +17,9 @@ if (isset($_POST['op']) == true) {
     } else if (strcmp($op, 'student') == 0) {
         $studentController = new StudentController();
         $studentController->handleRequest();
+    } else if (strcmp($op, 'toxic') == 0)  {
+        $toxicController = new ToxicDifController();
+        $toxicController->handleRequest();
     }
 }
 

@@ -195,6 +195,7 @@ class StudentModel
                 $r->groupName = $req['name'];
                 $r->grade = $req['grade'];
                 $r->hours = $req['hours'];
+                $r->difficulty = 3;
 
                 //now get courses for that group
                 $secondSql = 'SELECT courses.id as "id", ' .

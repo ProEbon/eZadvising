@@ -26,8 +26,7 @@
     <div id="pills">
         <ul class="nav nav-pills">
             <li class="planpill active" id="pill0"><a href="#plan0" data-toggle="pill">Default</a></li>
-            <li class="planpill" id="pill1" onclick="AddTitle()"><a href="#plan1" data-toggle="pill"><span
-                        class="glyphicon glyphicon-plus"></span></a></li>
+            <li class="planpill" id="pill1" onclick="AddTitle()"><a href="#plan1" data-toggle="pill">+</a></li>
         </ul>
     </div>
     <!-- End Nav Bar Tabs -->
@@ -83,6 +82,7 @@
                     <td>
                         <h4>
                             <button onclick="RenameTab()">Change Plan Name</button>
+                            <button onclick="RiceTester()">Rice Button</button>
                             <button data-show="on" onclick="showHideSummers()"> Show/Hide Summers</button>
                         </h4>
                     </td>
@@ -119,6 +119,7 @@
 <script src="app/view/js/AdvisingFunctions.js"></script>
 <script src="app/view/js/ClassBox.js"></script>
 <script src="app/view/js/NavBar.js"></script>
+<script src="app/view/js/ToxicDif.js"></script>
 <!-- End Custom Scripts -->
 
 <footer>
