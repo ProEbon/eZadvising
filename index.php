@@ -2,6 +2,7 @@
 require_once 'app/controller/PlanController.php';
 require_once 'app/controller/PlanItemController.php';
 require_once 'app/controller/StudentController.php';
+require_once 'app/controller/ToxicDifController.php';
 
 
 if (isset($_POST['op']) == true) {
