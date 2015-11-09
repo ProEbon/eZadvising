@@ -15,10 +15,10 @@ class ToxicDifController
         $this->handlePullCourseData();
     }
 
-    private function handlePullCourseData()
+    public function handlePullCourseData()
     {
-        if (isset($_POST ['riceCakes']))
-            $riceCakes = $_POST['riceCakes'];
+        if (isset($_POST ['plan']))
+            $riceCakes = $_POST['plan'];
         else
             $riceCakes = NULL;
 

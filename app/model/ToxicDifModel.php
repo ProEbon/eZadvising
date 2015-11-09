@@ -3,7 +3,6 @@ require_once(__DIR__."/../config/config.php");
 
 class ToxicDifModel
 {
-
     private $conn = NULL;
 
     public function __construct()
@@ -15,7 +14,7 @@ class ToxicDifModel
     {
         try
         {
-            $sql = 'SELECT * FROM courses';
+            $sql = 'SELECT * FROM course_records';
 
             $stmt = $this->conn->prepare($sql);
 
