@@ -2,7 +2,11 @@
 require_once 'app/controller/PlanController.php';
 require_once 'app/controller/PlanItemController.php';
 require_once 'app/controller/StudentController.php';
-
+require_once 'app/controller/ToxicDifController.php'; // adding the controller to the index, this speaks specifically to the controller and
+                                                      // and the controller called this with ajax.
+                                                      // this page speaks to
+                                                      // *javascript -> AJAX
+                                                      // *controller -> POST op toxic
 
 if (isset($_POST['op']) == true) {
     $op = $_POST['op'];
