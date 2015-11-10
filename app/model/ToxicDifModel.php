@@ -10,15 +10,16 @@ class ToxicDifModel
         $this->conn = new PDO(DBCONNECTSTRING, DBUSER, DBPASSWORD);
     }
 
-    public function getDataFromCourses($riceCakes)
+    public function getDataFromCourses($riceCakes, $coursesId)
     {
         try
         {
-            $sql = 'SELECT * FROM course_records';
+            $sql = 'SELECT courseId FROM courses WHERE ';
 
             $stmt = $this->conn->prepare($sql);
 
             $stmt->bindParam(':riceCakes', $riceCakes);
+            $stmt->bindParam(':courseId', $coursesId);
 
             $stmt->execute();
 

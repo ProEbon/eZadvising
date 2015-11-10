@@ -3,6 +3,7 @@
  */
 
 var poop = [];
+var coursesId;
 
 function RiceTester() {
     alert('Hello');
@@ -11,7 +12,8 @@ function RiceTester() {
         method: 'POST',
         data: {
             op: 'toxic',
-            plan: 1
+            plan: 1,
+            courseId: 1
         },
         success: function (result) {
             alert(result);
