@@ -14,19 +14,23 @@ class ToxicDifModel
     {
         try
         {
-            $sql = 'SELECT * FROM course_records';
 
-            $stmt = $this->conn->prepare($sql);
+                $sql = 'SELECT title
+                        FROM courses
+                        JOIN course_records
+                        ON course_records.courseId = courses.id';
 
-            $stmt->bindParam(':riceCakes', $riceCakes);
+                $stmt = $this->conn->prepare($sql);
 
-            $stmt->execute();
+                $stmt->bindParam(':riceCakes', $riceCakes);
 
-            $result = $stmt->fetchAll();
+                $stmt->execute();
 
-            $jsonResult = json_encode($result);
+                $result = $stmt->fetchAll();
 
-            return $jsonResult;
+                $jsonResult = json_encode($result);
+
+                return $jsonResult;
         }
         catch(PDOException $e)
         {
