@@ -17,20 +17,27 @@ class ToxicDifController
 
     public function handlePullCourseData()
     {
-        if (isset($_POST ['plan'])) {
+        /*
+         * added $riceBalls
+         */
+        if (isset($_POST ['plan']))
             $riceCakes = $_POST['plan'];
-        }
         else
             $riceCakes = NULL;
-        if (isset($_POST ['coursesId'])){
-            $coursesId = $_POST['coursesId'];
-        }
+        if(isset($_POST['plan']))
+            $riceBalls = $_POST['plan'];
+        else
+            $riceBalls = NULL;
 
-        if (!$riceCakes) {
+        if ( (!$riceCakes) || (!$riceBalls) ) {
             return;
         }
 
-        echo $this->toxicDifModel->getDataFromCourses($riceCakes, $coursesId);
+        /*
+         * added calculateDif function to 'Rice Button'
+         */
+        echo $this->toxicDifModel->getDataFromCourses($riceCakes);
+        echo $this->toxicDifModel->calculateDif($riceBalls);
     }
 }
 
